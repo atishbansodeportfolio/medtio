@@ -12,7 +12,7 @@ export default async function TopHospitals() {
             <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">Top Hospitals & Clinics</h2>
             <p className="text-gray-600 dark:text-gray-400">Discover top-rated healthcare centers across India</p>
           </div>
-          <Link href="/ivf/mumbai" className="text-teal-600 hover:text-teal-700 font-medium transition-colors">
+          <Link href="/ivf-clinics/mumbai" className="text-teal-600 hover:text-teal-700 font-medium transition-colors">
             View All &rarr;
           </Link>
         </div>
@@ -44,7 +44,10 @@ export default async function TopHospitals() {
                   </svg>
                   {clinic.city}
                 </div>
-                <Link href={`/clinic/${clinic.slug || clinic.id}`} className="block w-full text-center bg-teal-50 dark:bg-teal-900/20 text-teal-600 dark:text-teal-400 hover:bg-teal-100 dark:hover:bg-teal-900/40 font-medium py-2.5 rounded-lg transition-colors">
+                <Link 
+                  href={`/${clinic.specialty_slug || 'ivf'}-clinics/${clinic.slug}`} 
+                  className="block w-full text-center bg-teal-50 dark:bg-teal-900/20 text-teal-600 dark:text-teal-400 hover:bg-teal-100 dark:hover:bg-teal-900/40 font-medium py-2.5 rounded-lg transition-colors"
+                >
                   View Details
                 </Link>
               </div>

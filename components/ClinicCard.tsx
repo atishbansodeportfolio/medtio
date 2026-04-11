@@ -5,9 +5,10 @@ interface ClinicCardProps {
   address: string;
   rating: number | null;
   slug: string;
+  specialtySlug?: string;
 }
 
-export default function ClinicCard({ name, address, rating, slug }: ClinicCardProps) {
+export default function ClinicCard({ name, address, rating, slug, specialtySlug = 'ivf' }: ClinicCardProps) {
   return (
     <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 overflow-hidden hover:shadow-lg transition-shadow duration-300 flex flex-col h-full">
       <div className="h-48 bg-gray-200 dark:bg-gray-700 relative">
@@ -35,7 +36,7 @@ export default function ClinicCard({ name, address, rating, slug }: ClinicCardPr
           <span className="line-clamp-2">{address}</span>
         </div>
         <div className="mt-auto">
-            <Link href={`/clinic/${slug}`} className="block w-full text-center bg-teal-50 dark:bg-teal-900/20 text-teal-600 dark:text-teal-400 hover:bg-teal-100 dark:hover:bg-teal-900/40 font-medium py-2.5 rounded-lg transition-colors">
+            <Link href={`/${specialtySlug}-clinics/${slug}`} className="block w-full text-center bg-teal-50 dark:bg-teal-900/20 text-teal-600 dark:text-teal-400 hover:bg-teal-100 dark:hover:bg-teal-900/40 font-medium py-2.5 rounded-lg transition-colors">
             View Details
             </Link>
         </div>

@@ -11,7 +11,7 @@ export default function PopularCities() {
           {CITIES.map((city) => (
             <Link 
               key={city} 
-              href={`/ivf/${city.toLowerCase()}`}
+              href={`/ivf-clinics/${city.toLowerCase()}`}
               className="bg-gray-50 dark:bg-gray-800/50 hover:bg-teal-50 dark:hover:bg-teal-900/20 border border-gray-100 dark:border-gray-800 rounded-xl p-6 text-center transition-all duration-300 hover:shadow-md hover:-translate-y-1 group"
             >
               <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-200 group-hover:text-teal-600 transition-colors flex items-center justify-center gap-2">

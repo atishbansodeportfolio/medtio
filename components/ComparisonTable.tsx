@@ -84,7 +84,7 @@ export default function ComparisonTable({ clinics }: { clinics: any[] }) {
                 </td>
                 <td className="p-4">
                   <div className="flex flex-col items-start justify-center">
-                    <Link href={`/clinic/${clinic.slug || clinic.id}`} className="text-teal-600 dark:text-teal-400 font-bold hover:underline">
+                    <Link href={`/${clinic.specialty_slug || 'ivf'}-clinics/${clinic.slug || clinic.id}`} className="text-teal-600 dark:text-teal-400 font-bold hover:underline">
                       {clinic.name}
                     </Link>
                   </div>
@@ -110,7 +110,7 @@ export default function ComparisonTable({ clinics }: { clinics: any[] }) {
                   {clinic.experience_years ? `${clinic.experience_years} yrs` : 'N/A'}
                 </td>
                 <td className="p-4 text-center">
-                  <Link href={`/clinic/${clinic.slug || clinic.id}`} className="inline-block bg-teal-50 dark:bg-teal-900/30 text-teal-600 dark:text-teal-400 hover:bg-teal-100 dark:hover:bg-teal-900/50 font-semibold px-4 py-1.5 rounded-lg text-sm transition-colors border border-teal-100 dark:border-teal-800">
+                  <Link href={`/${clinic.specialty_slug || 'ivf'}-clinics/${clinic.slug || clinic.id}`} className="inline-block bg-teal-50 dark:bg-teal-900/30 text-teal-600 dark:text-teal-400 hover:bg-teal-100 dark:hover:bg-teal-900/50 font-semibold px-4 py-1.5 rounded-lg text-sm transition-colors border border-teal-100 dark:border-teal-800">
                     View
                   </Link>
                 </td>

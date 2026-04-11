@@ -78,7 +78,7 @@ export default function DoctorProfileGrid({ doctors }: DoctorProfileGridProps) {
               </div>
               
               <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-1">
-                <Link href={`/doctor/${doctor.slug || doctor.id}`} className="hover:text-teal-600 transition-colors">
+                <Link href={`/${doctor.specialty_slug || 'ivf'}-doctors/${doctor.slug || doctor.id}`} className="hover:text-teal-600 transition-colors">
                   {doctor.name}
                 </Link>
               </h3>
@@ -110,7 +110,7 @@ export default function DoctorProfileGrid({ doctors }: DoctorProfileGridProps) {
             
             <div className="px-6 pb-6 pt-2 mt-auto">
               <Link 
-                href={`/doctor/${doctor.slug || doctor.id}`}
+                href={`/${doctor.specialty_slug || 'ivf'}-doctors/${doctor.slug || doctor.id}`}
                 className="block w-full text-center py-2.5 bg-teal-50 hover:bg-teal-100 dark:bg-teal-900/20 dark:hover:bg-teal-900/40 text-teal-600 dark:text-teal-400 font-semibold rounded-lg transition-colors border border-transparent"
               >
                 View Details

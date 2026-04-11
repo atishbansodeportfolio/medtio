@@ -63,7 +63,7 @@ export default function DoctorComparisonTable({ doctors }: { doctors: any[] }) {
                 </td>
                 <td className="p-4">
                   <div className="flex flex-col items-start justify-center">
-                    <Link href={`/doctor/${doctor.slug || doctor.id}`} className="text-teal-600 dark:text-teal-400 font-bold hover:underline">
+                    <Link href={`/${doctor.specialty_slug || 'ivf'}-doctors/${doctor.slug || doctor.id}`} className="text-teal-600 dark:text-teal-400 font-bold hover:underline">
                       {doctor.name}
                     </Link>
                   </div>
@@ -83,7 +83,7 @@ export default function DoctorComparisonTable({ doctors }: { doctors: any[] }) {
                   </div>
                 </td>
                 <td className="p-4 text-center">
-                  <Link href={`/doctor/${doctor.slug || doctor.id}`} className="inline-block bg-teal-50 dark:bg-teal-900/30 text-teal-600 dark:text-teal-400 hover:bg-teal-100 dark:hover:bg-teal-900/50 font-semibold px-4 py-1.5 rounded-lg text-sm transition-colors border border-teal-100 dark:border-teal-800">
+                  <Link href={`/${doctor.specialty_slug || 'ivf'}-doctors/${doctor.slug || doctor.id}`} className="inline-block bg-teal-50 dark:bg-teal-900/30 text-teal-600 dark:text-teal-400 hover:bg-teal-100 dark:hover:bg-teal-900/50 font-semibold px-4 py-1.5 rounded-lg text-sm transition-colors border border-teal-100 dark:border-teal-800">
                     View
                   </Link>
                 </td>
