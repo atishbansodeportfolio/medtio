@@ -3,7 +3,7 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
-  color-scheme: light;
+  color-scheme: light !important;
 }
 
 @theme inline {
@@ -11,7 +11,8 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-  --variant-dark: :where(.dark, .dark *);
+  /* The impossible selector effectively kills all dark: utility classes project-wide */
+  --variant-dark: :not(*);
 }
 
 
