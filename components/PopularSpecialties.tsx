@@ -48,9 +48,9 @@ const SPECIALTIES = [
 
 export default function PopularSpecialties() {
   return (
-    <section className="py-16 bg-white dark:bg-background border-b border-gray-100 dark:border-gray-800">
+    <section className="py-16 bg-white  border-b border-gray-100 ">
       <div className="max-w-7xl mx-auto px-6">
-        <h2 className="text-3xl font-bold text-center text-gray-900 dark:text-white mb-10">
+        <h2 className="text-3xl font-bold text-center text-gray-900  mb-10">
           Popular Specialties
         </h2>
 
@@ -59,7 +59,7 @@ export default function PopularSpecialties() {
             <Link
               key={spec.name}
               href={`/${spec.slug}-clinics/mumbai`}
-              className="group rounded-2xl overflow-hidden border border-gray-100 dark:border-gray-700/50 shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 bg-white dark:bg-gray-800/60 flex flex-col"
+              className="group rounded-2xl overflow-hidden border border-gray-100  shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 bg-white  flex flex-col"
             >
               {/* Real Image Area */}
               <div className="relative w-full overflow-hidden" style={{ height: '200px' }}>
@@ -74,10 +74,10 @@ export default function PopularSpecialties() {
 
               {/* Text Area */}
               <div className="p-3 flex flex-col gap-0.5">
-                <h3 className="text-sm font-bold text-gray-900 dark:text-white leading-tight">
+                <h3 className="text-sm font-bold text-gray-900  leading-tight">
                   {spec.name}
                 </h3>
-                <p className="text-xs text-gray-500 dark:text-gray-400 leading-snug">
+                <p className="text-xs text-gray-500  leading-snug">
                   {spec.description}
                 </p>
               </div>

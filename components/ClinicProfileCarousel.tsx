@@ -33,7 +33,7 @@ export default function ClinicProfileCarousel({ clinics, displayCity }: ClinicPr
         <div className="flex gap-2">
           <button 
             onClick={scrollLeft} 
-            className="w-9 h-9 flex items-center justify-center rounded-full bg-white dark:bg-gray-800 shadow-sm border border-gray-200 dark:border-gray-700 text-teal-600 hover:bg-teal-50 dark:hover:bg-gray-700 transition"
+            className="w-9 h-9 flex items-center justify-center rounded-full bg-white  shadow-sm border border-gray-200  text-teal-600 hover:bg-teal-50 :bg-gray-700 transition"
             aria-label="Scroll left"
           >
             <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -42,7 +42,7 @@ export default function ClinicProfileCarousel({ clinics, displayCity }: ClinicPr
           </button>
           <button 
             onClick={scrollRight} 
-            className="w-9 h-9 flex items-center justify-center rounded-full bg-white dark:bg-gray-800 shadow-sm border border-gray-200 dark:border-gray-700 text-teal-600 hover:bg-teal-50 dark:hover:bg-gray-700 transition"
+            className="w-9 h-9 flex items-center justify-center rounded-full bg-white  shadow-sm border border-gray-200  text-teal-600 hover:bg-teal-50 :bg-gray-700 transition"
             aria-label="Scroll right"
           >
             <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -76,7 +76,7 @@ export default function ClinicProfileCarousel({ clinics, displayCity }: ClinicPr
           </div>
         ))}
         {(!clinics || clinics.length === 0) && (
-          <div className="col-span-full py-12 text-center text-gray-500 bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700">
+          <div className="col-span-full py-12 text-center text-gray-500 bg-white  rounded-xl border border-gray-200 ">
             No clinic details available.
           </div>
         )}
