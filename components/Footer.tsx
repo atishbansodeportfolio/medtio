@@ -29,10 +29,10 @@ export default function Footer() {
           </ul>
         </div>
         <div>
-          <h4 className="text-white font-semibold mb-4 lg:mb-6">Are you a clinic?</h4>
+          <h4 className="text-white font-semibold mb-4 lg:mb-6">Are you a medical practice?</h4>
           <p className="text-sm text-gray-400 mb-6 leading-relaxed">Join our platform to reach more patients and showcase your expertise.</p>
           <button className="bg-teal-600 hover:bg-teal-700 text-white px-5 py-2.5 rounded-lg text-sm font-medium transition-colors w-full md:w-auto">
-            List Your Clinic
+            List Your Practice
           </button>
         </div>
       </div>
