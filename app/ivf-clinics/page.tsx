@@ -16,6 +16,7 @@ export default function IVFClinicsLandingPage() {
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-gray-900  mb-6">
             Top IVF Clinics in India
           </h1>
+          <p className="text-sm text-gray-400 mb-6">Last Updated: 10th April 2026</p>
           <p className="text-xl text-gray-600  max-w-2xl mx-auto mb-10">
             Find and compare the best fertility centers across major Indian cities.
           </p>

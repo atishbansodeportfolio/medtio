@@ -16,6 +16,7 @@ export default function IVFDoctorsLandingPage() {
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-gray-900  mb-6">
             Top IVF Doctors in India
           </h1>
+          <p className="text-sm text-gray-400 mb-6">Last Updated: 10th April 2026</p>
           <p className="text-xl text-gray-600  max-w-2xl mx-auto mb-10">
             Compare years of experience, success rates, and ratings of leading fertility specialists.
           </p>

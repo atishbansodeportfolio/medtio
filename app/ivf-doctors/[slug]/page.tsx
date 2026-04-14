@@ -63,6 +63,7 @@ export default async function IVFDoctorsPage({ params }: { params: Promise<{ slu
               <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900  tracking-tight mb-6 mt-10">
                 Top 10 IVF Doctors in <span className="text-teal-600 ">{displayCity}</span>
               </h1>
+              <p className="text-sm text-gray-400 mb-8">Last Updated: 10th April 2026</p>
               <p className="text-lg text-gray-600  leading-relaxed mb-6">
                 Find the right fertility specialist for your journey. Compare the top-rated IVF doctors in {displayCity}.
               </p>
@@ -190,9 +191,10 @@ export default async function IVFDoctorsPage({ params }: { params: Promise<{ slu
                 )}
               </div>
               <div>
-                <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900  tracking-tight mb-3 break-words">
+                <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900  tracking-tight mb-2 break-words">
                   {doctor.name}
                 </h1>
+                <p className="text-sm text-gray-400 mb-3">Last Updated: 10th April 2026</p>
                 <div className="flex items-center gap-3 mb-4">
                   <p className="text-xl text-teal-600  font-semibold">
                     {doctor.qualification || 'IVF Specialist'}

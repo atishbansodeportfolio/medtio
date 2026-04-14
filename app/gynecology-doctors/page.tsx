@@ -16,6 +16,7 @@ export default function GynecologyDoctorsLandingPage() {
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-gray-900  mb-6">
             Top Gynecologists in India
           </h1>
+          <p className="text-sm text-gray-400 mb-6">Last Updated: 10th April 2026</p>
           <p className="text-xl text-gray-600  max-w-2xl mx-auto mb-10">
             Find the most experienced gynecologists and women&apos;s health specialists.
           </p>

@@ -5,9 +5,11 @@ import Link from 'next/link';
 import FAQAccordion from '@/components/FAQAccordion';
 import ComparisonTable from '@/components/ComparisonTable';
 import ClinicProfileCarousel from '@/components/ClinicProfileCarousel';
+import ClinicImage from '@/components/ClinicImage';
 
 // List of known city slugs
 const KNOWN_CITIES = ['mumbai', 'pune', 'delhi', 'bangalore', 'hyderabad', 'chennai', 'kolkata', 'ahmedabad'];
+const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL!
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
@@ -64,6 +66,7 @@ export default async function IVFClinicsPage({ params }: { params: Promise<{ slu
               <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900  tracking-tight mb-6 mt-10">
                 Top 10 IVF Clinics in <span className="text-teal-600 ">{displayCity}</span>
               </h1>
+              <p className="text-sm text-gray-400 mb-8">Last Updated: 10th April 2026</p>
               <p className="text-lg text-gray-600  leading-relaxed mb-6">
                 Looking for the best fertility treatments in {displayCity}? Compare the top-rated IVF clinics to help you make an informed decision for your parenthood journey.
               </p>
@@ -163,49 +166,60 @@ export default async function IVFClinicsPage({ params }: { params: Promise<{ slu
   const displayArea = clinic.address || '';
   const hasPhone = !!clinic.phone;
   const phoneHref = hasPhone ? `tel:${clinic.phone}` : '#';
+  const imageUrl = `${SUPABASE_URL}/storage/v1/object/public/clinics/${clinic.specialty_slug}-clinics/${clinic.city_slug}/${clinic.slug}.webp`;
 
   return (
     <div className="min-h-screen bg-gray-50  pb-32 lg:pb-20">
       <section className="bg-white  border-b border-gray-200  pt-16 pb-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col lg:flex-row lg:items-start justify-between gap-10 mt-10">
-            <div className="max-w-3xl flex-1">
-              <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900  tracking-tight mb-4 break-words">
-                {clinic.name}
-              </h1>
-              <p className="text-lg text-gray-500  mb-6 flex items-center flex-wrap gap-2">
-                <svg className="w-5 h-5 text-teal-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                </svg>
-                {displayArea}{displayArea && displayCity ? ', ' : ''}{displayCity}
-              </p>
+          <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-10 mt-10">
+            <div className="max-w-4xl flex-1 flex flex-col md:flex-row gap-10 items-center">
+              <div className="w-full md:w-80 h-64 rounded-2xl overflow-hidden bg-gray-100 border border-gray-200 shadow-lg flex-shrink-0">
+                <ClinicImage 
+                  src={imageUrl} 
+                  alt={clinic.name} 
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="flex-1">
+                <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900  tracking-tight mb-2 break-words">
+                  {clinic.name}
+                </h1>
+                <p className="text-sm text-gray-400 mb-4">Last Updated: 10th April 2026</p>
+                <p className="text-lg text-gray-500  mb-6 flex items-center flex-wrap gap-2">
+                  <svg className="w-5 h-5 text-teal-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                  </svg>
+                  {displayArea}{displayArea && displayCity ? ', ' : ''}{displayCity}
+                </p>
 
-              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4 mb-8">
-                <div className="bg-gray-50  p-4 rounded-xl border border-gray-100 ">
-                  <div className="text-xs text-gray-500  uppercase tracking-wide font-semibold mb-1">Rating</div>
-                  <div className="flex items-center text-xl font-bold text-gray-900 ">
-                    {clinic.rating || 'N/A'}
-                    <svg className="w-5 h-5 text-yellow-400 ml-1" fill="currentColor" viewBox="0 0 20 20">
-                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                    </svg>
+                <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4 mb-2">
+                  <div className="bg-gray-50  p-4 rounded-xl border border-gray-100 ">
+                    <div className="text-xs text-gray-400 uppercase tracking-wider font-bold mb-1">Rating</div>
+                    <div className="flex items-center text-xl font-bold text-gray-900 ">
+                      {clinic.rating || 'N/A'}
+                      <svg className="w-4 h-4 text-yellow-400 ml-1" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                      </svg>
+                    </div>
                   </div>
-                </div>
-                <div className="bg-gray-50  p-4 rounded-xl border border-gray-100 ">
-                  <div className="text-xs text-gray-500  uppercase tracking-wide font-semibold mb-1">Cost</div>
-                  <div className="text-xl font-bold text-gray-900 ">{clinic.cost_range || 'N/A'}</div>
-                </div>
-                <div className="bg-gray-50  p-4 rounded-xl border border-gray-100 ">
-                  <div className="text-xs text-gray-500  uppercase tracking-wide font-semibold mb-1">Success</div>
-                  <div className="text-xl font-bold text-gray-900 ">{clinic.success_rate || 'N/A'}</div>
-                </div>
-                <div className="bg-gray-50  p-4 rounded-xl border border-gray-100 ">
-                  <div className="text-xs text-gray-500  uppercase tracking-wide font-semibold mb-1">Doctors</div>
-                  <div className="text-xl font-bold text-gray-900 ">{clinic.doctors_count || 'N/A'}</div>
-                </div>
-                <div className="bg-gray-50  p-4 rounded-xl border border-gray-100 ">
-                  <div className="text-xs text-gray-500  uppercase tracking-wide font-semibold mb-1">Experience</div>
-                  <div className="text-xl font-bold text-gray-900 ">{clinic.experience_years ? `${clinic.experience_years} yrs` : 'N/A'}</div>
+                  <div className="bg-gray-50  p-4 rounded-xl border border-gray-100 ">
+                    <div className="text-xs text-gray-400 uppercase tracking-wider font-bold mb-1">Cost</div>
+                    <div className="text-xl font-bold text-gray-900 ">{clinic.cost_range || 'N/A'}</div>
+                  </div>
+                  <div className="bg-gray-50  p-4 rounded-xl border border-gray-100 ">
+                    <div className="text-xs text-gray-400 uppercase tracking-wider font-bold mb-1">Success</div>
+                    <div className="text-xl font-bold text-gray-900 ">{clinic.success_rate || 'N/A'}</div>
+                  </div>
+                  <div className="bg-gray-50  p-4 rounded-xl border border-gray-100 ">
+                    <div className="text-xs text-gray-400 uppercase tracking-wider font-bold mb-1">Doctors</div>
+                    <div className="text-xl font-bold text-gray-900 ">{clinic.doctors_count || 'N/A'}</div>
+                  </div>
+                  <div className="bg-gray-50  p-4 rounded-xl border border-gray-100 ">
+                    <div className="text-xs text-gray-400 uppercase tracking-wider font-bold mb-1">Experience</div>
+                    <div className="text-xl font-bold text-gray-900 ">{clinic.experience_years ? `${clinic.experience_years} yrs` : 'N/A'}</div>
+                  </div>
                 </div>
               </div>
             </div>

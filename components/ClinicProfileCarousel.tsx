@@ -58,23 +58,33 @@ export default function ClinicProfileCarousel({ clinics, displayCity }: ClinicPr
         className="
           flex overflow-x-auto snap-x snap-mandatory 
           [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden 
-          md:grid md:grid-cols-2 lg:grid-cols-3 
+          md:grid md:grid-cols-2 lg:grid-cols-4 
           gap-6 md:gap-8 pb-4
         "
       >
-        {clinics?.map((clinic: any) => (
-          <div 
-            key={clinic.id} 
-            className="snap-start shrink-0 w-[85vw] sm:w-[300px] md:w-auto h-auto flex flex-col"
-          >
-            <ClinicCard
-              name={clinic.name}
-              address={clinic.address || clinic.area || clinic.city || displayCity}
-              rating={clinic.rating}
-              slug={clinic.slug || clinic.id}
-            />
-          </div>
-        ))}
+        {clinics?.map((clinic: any) => {
+          const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL;
+          const imageUrl = clinic.image_url || `${SUPABASE_URL}/storage/v1/object/public/clinics/${clinic.specialty_slug}-clinics/${clinic.city_slug}/${clinic.slug}.webp`;
+          
+          return (
+            <div 
+              key={clinic.id} 
+              className="snap-start shrink-0 w-[85vw] sm:w-[300px] md:w-auto h-auto flex flex-col"
+            >
+              <ClinicCard
+                name={clinic.name}
+                address={clinic.address || clinic.area || clinic.city || displayCity}
+                rating={clinic.rating}
+                slug={clinic.slug || clinic.id}
+                specialtySlug={clinic.specialty_slug}
+                imageUrl={imageUrl}
+                city={clinic.city || displayCity}
+                successRate={clinic.success_rate}
+                experienceYears={clinic.experience_years}
+              />
+            </div>
+          );
+        })}
         {(!clinics || clinics.length === 0) && (
           <div className="col-span-full py-12 text-center text-gray-500 bg-white  rounded-xl border border-gray-200 ">
             No clinic details available.
