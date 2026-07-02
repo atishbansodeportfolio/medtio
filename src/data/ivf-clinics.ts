@@ -197,7 +197,7 @@ export const ivfclinics: Clinic[] = [
     "cost_range": "₹1.8L–₹2.6L",
     "doctors_count": 5,
     "experience_years": 15,
-    "image_url": null
+    "image_url": "/images/ivf-clinics/pune/nova-ivf-fertility-pune.webp"
   },
   {
     "id": 13,
@@ -215,7 +215,7 @@ export const ivfclinics: Clinic[] = [
     "cost_range": "₹2.0L–₹3.0L",
     "doctors_count": 6,
     "experience_years": 16,
-    "image_url": null
+    "image_url": "/images/ivf-clinics/pune/progenesis-fertility-pune.webp"
   },
   {
     "id": 14,
@@ -233,7 +233,7 @@ export const ivfclinics: Clinic[] = [
     "cost_range": "₹1.5L–₹2.3L",
     "doctors_count": 4,
     "experience_years": 12,
-    "image_url": null
+    "image_url": "/images/ivf-clinics/pune/indira-ivf-pune.webp"
   },
   {
     "id": 15,
@@ -251,7 +251,7 @@ export const ivfclinics: Clinic[] = [
     "cost_range": "₹1.9L–₹2.8L",
     "doctors_count": 5,
     "experience_years": 14,
-    "image_url": null
+    "image_url": "/images/ivf-clinics/pune/cloudnine-fertility-pune.webp"
   },
   {
     "id": 16,
@@ -269,7 +269,7 @@ export const ivfclinics: Clinic[] = [
     "cost_range": "₹1.6L–₹2.4L",
     "doctors_count": 4,
     "experience_years": 10,
-    "image_url": null
+    "image_url": "/images/ivf-clinics/pune/bloom-ivf-pune.webp"
   },
   {
     "id": 17,
@@ -287,7 +287,7 @@ export const ivfclinics: Clinic[] = [
     "cost_range": "₹1.6L–₹2.3L",
     "doctors_count": 3,
     "experience_years": 9,
-    "image_url": null
+    "image_url": "/images/ivf-clinics/pune/gaudium-ivf-pune.webp"
   },
   {
     "id": 18,
@@ -305,7 +305,7 @@ export const ivfclinics: Clinic[] = [
     "cost_range": "₹1.7L–₹2.5L",
     "doctors_count": 4,
     "experience_years": 11,
-    "image_url": null
+    "image_url": "/images/ivf-clinics/pune/oasis-fertility-pune.webp"
   },
   {
     "id": 19,
@@ -323,7 +323,7 @@ export const ivfclinics: Clinic[] = [
     "cost_range": "₹1.5L–₹2.2L",
     "doctors_count": 3,
     "experience_years": 8,
-    "image_url": null
+    "image_url": "/images/ivf-clinics/pune/ferty9-fertility-pune.webp"
   },
   {
     "id": 20,
@@ -341,7 +341,7 @@ export const ivfclinics: Clinic[] = [
     "cost_range": "₹1.4L–₹2.1L",
     "doctors_count": 3,
     "experience_years": 7,
-    "image_url": null
+    "image_url": "/images/ivf-clinics/pune/wings-ivf-pune.webp"
   },
   {
     "id": 21,
@@ -359,7 +359,7 @@ export const ivfclinics: Clinic[] = [
     "cost_range": "₹1.6L–₹2.4L",
     "doctors_count": 3,
     "experience_years": 9,
-    "image_url": null
+    "image_url": "/images/ivf-clinics/pune/sparsh-women-ivf-pune.webp"
   },
   {
     "id": 1,

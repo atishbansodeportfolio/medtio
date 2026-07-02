@@ -76,7 +76,41 @@ export default async function IVFClinicsPage({ params }: { params: Promise<{ slu
           <h2 className="text-2xl font-bold text-gray-900  mb-8 border-l-4 border-blue-500 pl-4">
             Detailed Clinic Profiles
           </h2>
-          <ClinicProfileCarousel clinics={clinics} displayCity={displayCity} />
+          <div className="space-y-10">
+            {clinics?.map((clinic: any, index: number) => {
+              const paragraph = `${clinic.name} is a leading IVF and fertility specialist clinic located in ${clinic.address || clinic.city}, ${clinic.city || displayCity}. Holding a strong track record of clinical excellence, the center has achieved a success rate of ${clinic.success_rate || '60-70%'} and brings over ${clinic.experience_years || '10'} years of specialized experience. Led by a team of ${clinic.doctors_count || 'several'} dedicated fertility specialists and embryologists, they offer customized ovarian stimulation protocols, advanced laboratory procedures (including ICSI and IMSI), and compassionate, patient-centered care. The typical cost range for treatments here is ${clinic.cost_range || 'on request'}, offering both premium facilities and flexible financial options.`;
+              return (
+                <div key={clinic.id} className="bg-white p-8 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+                  <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-4 gap-2">
+                    <h3 className="text-2xl font-bold text-gray-900">
+                      {index + 1}. {clinic.name}
+                    </h3>
+                    <div className="flex items-center bg-blue-50 px-3 py-1 rounded-full text-sm font-semibold text-blue-700">
+                      <svg className="w-4 h-4 mr-1 text-yellow-500" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                      </svg>
+                      {clinic.rating || '4.5'}
+                    </div>
+                  </div>
+                  <p className="text-gray-600 leading-relaxed text-base mb-6">
+                    {paragraph}
+                  </p>
+                  <div className="flex flex-wrap gap-4 text-xs text-gray-500 mb-6">
+                    <span className="bg-gray-50 px-3 py-1.5 rounded-lg border border-gray-100 font-medium">📍 {clinic.address || 'Central Location'}</span>
+                    <span className="bg-gray-50 px-3 py-1.5 rounded-lg border border-gray-100 font-medium">📈 Success Rate: {clinic.success_rate || '60-70%'}</span>
+                    <span className="bg-gray-50 px-3 py-1.5 rounded-lg border border-gray-100 font-medium">💰 Cost Range: {clinic.cost_range || 'On Request'}</span>
+                    <span className="bg-gray-50 px-3 py-1.5 rounded-lg border border-gray-100 font-medium">👨‍⚕️ {clinic.doctors_count || 'Multiple'} Specialists</span>
+                  </div>
+                  <Link 
+                    href={`/ivf-clinics/${clinic.slug}`}
+                    className="inline-block bg-teal-600 hover:bg-teal-700 text-white font-semibold py-2.5 px-6 rounded-xl transition-colors shadow-sm text-sm"
+                  >
+                    View Details
+                  </Link>
+                </div>
+              );
+            })}
+          </div>
 
           <div className="mt-20 border-t border-gray-200  pt-16">
             <h2 className="text-3xl font-bold text-gray-900  mb-8 text-center">

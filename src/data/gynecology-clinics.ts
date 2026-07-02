@@ -35,7 +35,7 @@ export const gynecologyclinics: Clinic[] = [
     "cost_range": null,
     "doctors_count": null,
     "experience_years": null,
-    "image_url": null
+    "image_url": "/images/gynecology-clinics/mumbai/lilavati-hospital-mumbai.webp"
   },
   {
     "id": 23,
@@ -53,7 +53,7 @@ export const gynecologyclinics: Clinic[] = [
     "cost_range": null,
     "doctors_count": null,
     "experience_years": null,
-    "image_url": null
+    "image_url": "/images/gynecology-clinics/mumbai/jaslok-hospital-mumbai.webp"
   },
   {
     "id": 24,
@@ -71,7 +71,7 @@ export const gynecologyclinics: Clinic[] = [
     "cost_range": null,
     "doctors_count": null,
     "experience_years": null,
-    "image_url": null
+    "image_url": "/images/gynecology-clinics/mumbai/nanavati-hospital-mumbai.webp"
   },
   {
     "id": 25,
@@ -89,7 +89,7 @@ export const gynecologyclinics: Clinic[] = [
     "cost_range": null,
     "doctors_count": null,
     "experience_years": null,
-    "image_url": null
+    "image_url": "/images/gynecology-clinics/mumbai/kokilaben-hospital-mumbai.webp"
   },
   {
     "id": 26,
@@ -107,7 +107,7 @@ export const gynecologyclinics: Clinic[] = [
     "cost_range": null,
     "doctors_count": null,
     "experience_years": null,
-    "image_url": null
+    "image_url": "/images/gynecology-clinics/mumbai/cloudnine-hospital-mumbai.webp"
   },
   {
     "id": 27,
@@ -125,7 +125,7 @@ export const gynecologyclinics: Clinic[] = [
     "cost_range": null,
     "doctors_count": null,
     "experience_years": null,
-    "image_url": null
+    "image_url": "/images/gynecology-clinics/mumbai/wockhardt-hospital-mumbai.webp"
   },
   {
     "id": 28,
@@ -143,7 +143,7 @@ export const gynecologyclinics: Clinic[] = [
     "cost_range": null,
     "doctors_count": null,
     "experience_years": null,
-    "image_url": null
+    "image_url": "/images/gynecology-clinics/mumbai/hinduja-hospital-mumbai.webp"
   },
   {
     "id": 29,
@@ -161,7 +161,7 @@ export const gynecologyclinics: Clinic[] = [
     "cost_range": null,
     "doctors_count": null,
     "experience_years": null,
-    "image_url": null
+    "image_url": "/images/gynecology-clinics/mumbai/breach-candy-hospital-mumbai.webp"
   },
   {
     "id": 30,
@@ -179,7 +179,7 @@ export const gynecologyclinics: Clinic[] = [
     "cost_range": null,
     "doctors_count": null,
     "experience_years": null,
-    "image_url": null
+    "image_url": "/images/gynecology-clinics/mumbai/saifee-hospital-mumbai.webp"
   },
   {
     "id": 31,
@@ -197,6 +197,6 @@ export const gynecologyclinics: Clinic[] = [
     "cost_range": null,
     "doctors_count": null,
     "experience_years": null,
-    "image_url": null
+    "image_url": "/images/gynecology-clinics/mumbai/apollo-hospital-navi-mumbai.webp"
   }
 ];
