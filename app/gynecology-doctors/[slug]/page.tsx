@@ -1,4 +1,4 @@
-import { supabase } from '@/lib/supabase';
+import { gynecologydoctors } from '@/src/data/gynecology-doctors';
 import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
 import Link from 'next/link';
@@ -20,12 +20,9 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     };
   }
 
-  const { data: doctor } = await supabase
-    .from('doctors')
-    .select('*')
-    .eq('slug', slug)
-    .eq('specialty_slug', 'gynecology')
-    .single();
+  const doctor = gynecologydoctors.find(
+    d => d.slug.toLowerCase() === slug.toLowerCase()
+  );
 
   if (doctor) {
     const displayCity = doctor.city || '';
@@ -45,13 +42,10 @@ export default async function GynecologyDoctorsPage({ params }: { params: Promis
   const { slug } = await params;
 
   // 1. Try Fetching as City
-  const { data: doctors } = await supabase
-    .from('doctors')
-    .select('*')
-    .eq('specialty_slug', 'gynecology')
-    .eq('city_slug', slug.toLowerCase())
-    .order('rating', { ascending: false })
-    .limit(10);
+  const doctors = gynecologydoctors
+    .filter(d => d.city_slug.toLowerCase() === slug.toLowerCase())
+    .sort((a, b) => (b.rating || 0) - (a.rating || 0))
+    .slice(0, 10);
 
   if (doctors && doctors.length > 0) {
     const displayCity = slug.charAt(0).toUpperCase() + slug.slice(1).toLowerCase();
@@ -87,24 +81,17 @@ export default async function GynecologyDoctorsPage({ params }: { params: Promis
   }
 
   // 2. Try Fetching as Doctor Detail
-  const { data: doctor } = await supabase
-    .from('doctors')
-    .select('*')
-    .eq('slug', slug)
-    .eq('specialty_slug', 'gynecology')
-    .single();
+  const doctor = gynecologydoctors.find(
+    d => d.slug.toLowerCase() === slug.toLowerCase()
+  );
 
   if (!doctor) {
     notFound();
   }
 
-  const { data: relatedDoctors } = await supabase
-    .from('doctors')
-    .select('*')
-    .eq('city_slug', doctor.city_slug)
-    .eq('specialty_slug', 'gynecology')
-    .neq('id', doctor.id)
-    .limit(3);
+  const relatedDoctors = gynecologydoctors
+    .filter(d => d.city_slug.toLowerCase() === doctor.city_slug.toLowerCase() && d.id !== doctor.id)
+    .slice(0, 3);
 
   const displayCity = doctor.city || '';
 
@@ -165,7 +152,7 @@ export default async function GynecologyDoctorsPage({ params }: { params: Promis
                    </div>
                     <div className="bg-gray-50  p-4 rounded-xl border border-gray-100 ">
                      <div className="text-xs text-gray-500  uppercase tracking-wide font-semibold mb-1">Primary Clinic</div>
-                     <div className="text-lg font-bold text-gray-900  line-clamp-1" title={doctor.clinic_name}>{doctor.clinic_name || 'N/A'}</div>
+                     <div className="text-lg font-bold text-gray-900  line-clamp-1" title={doctor.clinic_name || undefined}>{doctor.clinic_name || 'N/A'}</div>
                    </div>
                 </div>
               </div>

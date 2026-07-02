@@ -1,4 +1,4 @@
-import { supabase } from '@/lib/supabase';
+import { ivfclinics } from '@/src/data/ivf-clinics';
 import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
 import Link from 'next/link';
@@ -9,7 +9,6 @@ import ClinicImage from '@/components/ClinicImage';
 
 // List of known city slugs
 const KNOWN_CITIES = ['mumbai', 'pune', 'delhi', 'bangalore', 'hyderabad', 'chennai', 'kolkata', 'ahmedabad'];
-const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL!
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
@@ -23,12 +22,9 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     };
   }
 
-  const { data: clinic } = await supabase
-    .from('clinics')
-    .select('*')
-    .eq('slug', slug)
-    .eq('specialty_slug', 'ivf')
-    .single();
+  const clinic = ivfclinics.find(
+    c => c.slug.toLowerCase() === slug.toLowerCase()
+  );
 
   if (clinic) {
     const displayCity = clinic.city || '';
@@ -48,13 +44,10 @@ export default async function IVFClinicsPage({ params }: { params: Promise<{ slu
   const { slug } = await params;
   
   // 1. Try Fetching as City
-  const { data: clinics } = await supabase
-    .from('clinics')
-    .select('*')
-    .eq('specialty_slug', 'ivf')
-    .eq('city_slug', slug.toLowerCase())
-    .order('rating', { ascending: false })
-    .limit(10);
+  const clinics = ivfclinics
+    .filter(c => c.city_slug.toLowerCase() === slug.toLowerCase())
+    .sort((a, b) => (b.rating || 0) - (a.rating || 0))
+    .slice(0, 10);
 
   if (clinics && clinics.length > 0) {
     const displayCity = slug.charAt(0).toUpperCase() + slug.slice(1).toLowerCase();
@@ -151,12 +144,9 @@ export default async function IVFClinicsPage({ params }: { params: Promise<{ slu
   }
 
   // 2. Try Fetching as Clinic Detail
-  const { data: clinic } = await supabase
-    .from('clinics')
-    .select('*')
-    .eq('slug', slug)
-    .eq('specialty_slug', 'ivf')
-    .single();
+  const clinic = ivfclinics.find(
+    c => c.slug.toLowerCase() === slug.toLowerCase()
+  );
 
   if (!clinic) {
     notFound();
@@ -166,7 +156,7 @@ export default async function IVFClinicsPage({ params }: { params: Promise<{ slu
   const displayArea = clinic.address || '';
   const hasPhone = !!clinic.phone;
   const phoneHref = hasPhone ? `tel:${clinic.phone}` : '#';
-  const imageUrl = `${SUPABASE_URL}/storage/v1/object/public/clinics/${clinic.specialty_slug}-clinics/${clinic.city_slug}/${clinic.slug}.webp`;
+  const imageUrl = clinic.image_url || `/images/${clinic.specialty_slug}-clinics/${clinic.city_slug}/${clinic.slug}.webp`;
 
   return (
     <div className="min-h-screen bg-gray-50  pb-32 lg:pb-20">

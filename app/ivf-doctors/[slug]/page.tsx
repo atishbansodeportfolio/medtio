@@ -1,4 +1,4 @@
-import { supabase } from '@/lib/supabase';
+import { ivfdoctors } from '@/src/data/ivf-doctors';
 import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
 import Link from 'next/link';
@@ -20,12 +20,9 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     };
   }
 
-  const { data: doctor } = await supabase
-    .from('doctors')
-    .select('*')
-    .eq('slug', slug)
-    .eq('specialty_slug', 'ivf')
-    .single();
+  const doctor = ivfdoctors.find(
+    d => d.slug.toLowerCase() === slug.toLowerCase()
+  );
 
   if (doctor) {
     const displayCity = doctor.city || '';
@@ -45,13 +42,10 @@ export default async function IVFDoctorsPage({ params }: { params: Promise<{ slu
   const { slug } = await params;
 
   // 1. Try Fetching as City
-  const { data: doctors } = await supabase
-    .from('doctors')
-    .select('*')
-    .eq('specialty_slug', 'ivf')
-    .eq('city_slug', slug.toLowerCase())
-    .order('rating', { ascending: false })
-    .limit(10);
+  const doctors = ivfdoctors
+    .filter(d => d.city_slug.toLowerCase() === slug.toLowerCase())
+    .sort((a, b) => (b.rating || 0) - (a.rating || 0))
+    .slice(0, 10);
 
   if (doctors && doctors.length > 0) {
     const displayCity = slug.charAt(0).toUpperCase() + slug.slice(1).toLowerCase();
@@ -153,25 +147,18 @@ export default async function IVFDoctorsPage({ params }: { params: Promise<{ slu
   }
 
   // 2. Try Fetching as Doctor Detail
-  const { data: doctor } = await supabase
-    .from('doctors')
-    .select('*')
-    .eq('slug', slug)
-    .eq('specialty_slug', 'ivf')
-    .single();
+  const doctor = ivfdoctors.find(
+    d => d.slug.toLowerCase() === slug.toLowerCase()
+  );
 
   if (!doctor) {
     notFound();
   }
 
   // Related Doctors
-  const { data: relatedDoctors } = await supabase
-    .from('doctors')
-    .select('*')
-    .eq('city_slug', doctor.city_slug)
-    .eq('specialty_slug', 'ivf')
-    .neq('id', doctor.id)
-    .limit(3);
+  const relatedDoctors = ivfdoctors
+    .filter(d => d.city_slug.toLowerCase() === doctor.city_slug.toLowerCase() && d.id !== doctor.id)
+    .slice(0, 3);
 
   const displayCity = doctor.city || '';
 
@@ -232,7 +219,7 @@ export default async function IVFDoctorsPage({ params }: { params: Promise<{ slu
                    </div>
                     <div className="bg-gray-50  p-4 rounded-xl border border-gray-100 ">
                      <div className="text-xs text-gray-500  uppercase tracking-wide font-semibold mb-1">Primary Clinic</div>
-                     <div className="text-lg font-bold text-gray-900  line-clamp-1" title={doctor.clinic_name}>{doctor.clinic_name || 'N/A'}</div>
+                     <div className="text-lg font-bold text-gray-900  line-clamp-1" title={doctor.clinic_name || undefined}>{doctor.clinic_name || 'N/A'}</div>
                    </div>
                 </div>
               </div>

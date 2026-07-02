@@ -1,11 +1,9 @@
-import { supabase } from '@/lib/supabase';
+import { ivfdoctors } from '@/src/data/ivf-doctors';
+import { gynecologydoctors } from '@/src/data/gynecology-doctors';
 import Link from 'next/link';
 
 export default async function TopDoctors() {
-  const { data: doctors } = await supabase
-    .from('doctors')
-    .select('*')
-    .limit(4);
+  const doctors = [...ivfdoctors, ...gynecologydoctors].slice(0, 4);
 
   return (
     <section className="py-20 bg-gray-50 ">

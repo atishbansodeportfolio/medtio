@@ -63,8 +63,7 @@ export default function ClinicProfileCarousel({ clinics, displayCity }: ClinicPr
         "
       >
         {clinics?.map((clinic: any) => {
-          const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL;
-          const imageUrl = clinic.image_url || `${SUPABASE_URL}/storage/v1/object/public/clinics/${clinic.specialty_slug}-clinics/${clinic.city_slug}/${clinic.slug}.webp`;
+          const imageUrl = clinic.image_url || `/images/${clinic.specialty_slug}-clinics/${clinic.city_slug}/${clinic.slug}.webp`;
           
           return (
             <div 

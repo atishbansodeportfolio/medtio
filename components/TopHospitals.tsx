@@ -1,8 +1,9 @@
-import { supabase } from '@/lib/supabase';
+import { ivfclinics } from '@/src/data/ivf-clinics';
+import { gynecologyclinics } from '@/src/data/gynecology-clinics';
 import Link from 'next/link';
 
 export default async function TopHospitals() {
-  const { data: clinics } = await supabase.from('clinics').select('*').limit(6);
+  const clinics = [...ivfclinics, ...gynecologyclinics].slice(0, 6);
 
   return (
     <section className="py-20 bg-white  border-t border-gray-100 ">
